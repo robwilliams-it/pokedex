@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import { CardMedia } from '@mui/material';
 
 const About = () => (
     <Container 
@@ -11,7 +12,15 @@ const About = () => (
         }}
     >
 
-        <Box sx={{ height: '50vh', opacity: 0.5}} />
+        <Box sx={{ height: '50vh', opacity: 0.5}} > 
+            <CardMedia
+                component="img"
+                height="100%"
+                image="../../images/sunset-ny.jpg"
+                // alt="Paella dish"
+            />
+        </Box>
+
         <Box sx={{ bgcolor: 'red', height: '50vh', opacity: 0.5}} />
 
     </Container>
