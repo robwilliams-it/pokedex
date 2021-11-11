@@ -17,7 +17,6 @@ const About = () => (
                 component="img"
                 height="100%"
                 image="../../images/sunset-ny.jpg"
-                
             />
         </Box>
 
