@@ -10,9 +10,6 @@ function App() {
     <div className="App" style={{overflow:'hidden'}}>
 
       <Banner />
-
-      <Order />
-      
       <About />
 
     </div>
