@@ -14,11 +14,10 @@ const Banner = () => (
         
         <Box 
             sx={{ 
-                bgcolor: 'black', 
+                bgcolor: 'white', 
                 height: '10vh', 
             }} 
         />
-
     </Container>
 )
 
