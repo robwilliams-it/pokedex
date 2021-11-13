@@ -7,7 +7,7 @@ import About from './components/pages/about.js';
 
 function App() {
   return (
-    <div className="App" style={{overflow:'hidden'}}>
+    <div className="App" style={{overflowY:'hidden' }}>
 
       <Banner />
       <About />

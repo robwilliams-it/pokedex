@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 const PokemonTextBox = () => (
-    <Paper elevation={0}  sx={{ flexShrink: 0, mx: '10px'}} >
+    <Paper elevation={0}  sx={{ flexShrink: 0}} >
         <Grid
             container
             direction="column"
@@ -13,15 +13,16 @@ const PokemonTextBox = () => (
             alignItems="center"
         > 
             <Typography variant="h3" gutterBottom component="div">
-                Gotta Cath A Few!
+                Gotta Catch A Few!
             </Typography>
             <Container 
                 maxWidth="100%" 
             >
             <Typography variant="subtitle" gutterBottom component="div">
-                Pokemon was one of my favorite games growing up. Fun fact I never beat the first one. 
-                I never realized you were supposed to check the trash cans for the means to access the third gym.
-                I kept backtracking looking for the pokeflut to get Snorelax to move. :-(
+                Why is there a pokeball here you may ask.
+                The answer is simply, just because!
+                <br/><br/>
+                Click it and see what happens!
             </Typography>
             <br/>
             </Container>

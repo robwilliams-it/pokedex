@@ -8,13 +8,13 @@ const Banner = () => (
             padding:'0px', 
             top: '0px', 
             position: 'fixed', 
-            zIndex: '1'
+            zIndex: '1',
         }}
     >
         
         <Box 
             sx={{ 
-                bgcolor: 'white', 
+                bgcolor: 'ghostwhite', 
                 height: '10vh', 
             }} 
         />
