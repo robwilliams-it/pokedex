@@ -12,17 +12,15 @@ const PokemonTextBox = () => (
             justifyContent="center"
             alignItems="center"
         > 
-            <Typography variant="h3" gutterBottom component="div">
-                Gotta Catch A Few!
+            <Typography variant="h4" gutterBottom component="div">
+                Looks like you caught something!
             </Typography>
             <Container 
                 maxWidth="100%" 
             >
             <Typography variant="subtitle" gutterBottom component="div">
-                Why is there a pokeball here you may ask.
-                The answer is simply, just because!
-                <br/><br/>
-                Click it and see what happens!
+                <br/>
+                Open it and lets find out whats inside
             </Typography>
             <br/>
             </Container>

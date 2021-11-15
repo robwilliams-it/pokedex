@@ -31,7 +31,7 @@ const Landing = () => {
                 <CardMedia
                     component="img"
                     height="100%"
-                    image="../../images/sunset-ny.jpg"
+                    image="../../images/pokemon_background.jpeg"
                 />
             </Box>
 

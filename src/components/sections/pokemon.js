@@ -15,10 +15,15 @@ const pokemonCount = 898;
 
 const Pokemon = () => {
     const [pokemon, setPokemon] = useState({});
+    const [promptClick, setPromptClick] = useState(true);
 
     const handleClick = (event) => {
         const randomNum = Math.floor(Math.random()*pokemonCount);
         getPokemon(randomNum);
+    }
+
+    const updatePrompt = () => {
+        setPromptClick(!promptClick); 
     }
 
     const getPokemon = (pokeIndex) => {
@@ -35,16 +40,20 @@ const Pokemon = () => {
     const renderPokemon = () => {
         if (pokemon.sprites) {
             const pokeObj = {
-                image: pokemon.sprites.front_default || '',
+                image: pokemon.sprites.other['official-artwork'].front_default || '',
                 name: pokemon.name || '',
                 id: pokemon.id || 0,
-                type: []
+                type: [],
+                moves: []
             }
             for (let i = 0; i < pokemon.types.length; i++) {
                 const type = pokemon.types[i];
                 pokeObj.type.push(type.type.name);
             }
-            return <PokeCard pokeData = {pokeObj} handleClick={handleClick}/>
+            pokemon.moves.map((atk)=>{
+                pokeObj.moves.push(atk.move.name);
+            })
+            return <PokeCard pokeData = {pokeObj} handleClick={handleClick} prompt={promptClick}/>
         }
         return <PokeCard handleClick={handleClick}/>
     }
@@ -82,18 +91,17 @@ const Pokemon = () => {
                     </Grid>
                 </Grid>
 
-                <Container 
+                <Grid 
                     id='pokemonAPI'
+                    container
+                    justifyContent="center"
+                    alignItems="center"
                     sx={{width: '50%', height: '100%'}} 
                 > 
-                    {renderPokemon()}
-                    <Button 
-                        variant="text"
-                        onClick = {handleClick}
-                    >
-                        Text
-                    </Button>
-                </Container>
+                    <Grid item>
+                        {renderPokemon()}
+                    </Grid>
+                </Grid>
             </Grid>
         </Container>
     )

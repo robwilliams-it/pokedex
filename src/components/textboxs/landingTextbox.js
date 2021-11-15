@@ -13,16 +13,14 @@ const LandingTextBox = () => (
             alignItems="center"
         > 
             <Typography variant="h3" gutterBottom component="div">
-                The NY skyline
+                Gotta Catch A Few!
                 <hr/>
             </Typography>
             <Container 
                 maxWidth="100%" 
             >
             <Typography variant="subtitle" gutterBottom component="div">
-                Not very impressive I know. 
-                It's just a picture with an overlapping text box.
-                But I thought it might be nice to start off with where I am from.
+                So initially I started with an image of the NY skyline but I figured this image would be more appropriate since I decided to use to create this project using the pokeAPI
             </Typography>
             <br/>
             </Container>

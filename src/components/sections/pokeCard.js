@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import { styled } from '@mui/material/styles';
+import { Box, keyframes } from '@mui/system';
 
 const typeColors = {
     'Bug' : '#A6B91A',
@@ -25,12 +27,27 @@ const typeColors = {
     'Rock' : '#B6A136',
     'Steel' : '#B7B7CE',
     'Water' : '#6390F0',
-
 }
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
 
 const PokeCard =(props)=> {
     const pokeProps = props.pokeData || {};
     const handleClick = props.handleClick;
+    const prompt = props.prompt;
 
     const renderPokemonName = () => {
         let pokeName = pokeProps.name;
@@ -41,12 +58,14 @@ const PokeCard =(props)=> {
                     {pokeName}
                 </Typography>
             )
+        } 
+    }
+
+    const getCardElevation = () => {
+        if (pokeProps.name) {
+            return 3;
         } else {
-            return (
-                <Typography gutterBottom variant="h3" component="div">
-                    Lets See What Wee Caught!
-                </Typography>
-            )
+            return 0;
         }
     }
 
@@ -71,11 +90,43 @@ const PokeCard =(props)=> {
         }
     }
 
+    const renderPokeImage = () => {
+        if (pokeProps.image) {
+            return (
+            <CardMedia
+                component="img"
+                image= {pokeProps.image}
+                onClick = {handleClick}
+            />
+            )
+        } else {
+            return (
+                <CardMedia
+                    component="img"
+                    image= '../images/pokeball2.png' 
+                    onClick = {handleClick} 
+                    sx={{
+                        animation: `${spin} 1s infinite ease`
+                    }}
+                />
+            )
+        }
+    }
+
+    const renderPokeMoves = () => {
+        if (pokeProps.moves) {
+            return (
+                pokeProps.moves.map((atk, index)=>{
+                    return <Typography key={index}>{atk}</Typography>
+                })
+            )
+        } 
+    }
+
     return (
         <Card
-            sx={{height: '100%'}}
-            onClick = {handleClick}
-            elevation={0}
+            elevation={getCardElevation()}
+            sx={{padding: 2, width: '500px' }}
         >
             {/* <CardActionArea sx={{height: '100%'}}> */}
                 
@@ -85,7 +136,6 @@ const PokeCard =(props)=> {
                     direction="column"
                     justifyContent="space-around"
                     alignItems="center"
-                    sx={{height: '100%'}}
                 >
 
                     <Grid
@@ -98,6 +148,8 @@ const PokeCard =(props)=> {
                         {renderPokemonName()}
                     </Grid>
 
+                    { renderPokeImage() }
+
                     <Grid
                         id='pokemonType(s)'
                         container
@@ -105,12 +157,13 @@ const PokeCard =(props)=> {
                         justifyContent="space-around"
                         alignItems="center"
                     >
-                        {renderPokemonType()}
+                            {renderPokemonType()}
                     </Grid>
-                    <CardMedia
-                        component="img"
-                        image= {pokeProps.image || '../images/pokeball.png'}
-                    />
+                    <Container sx={{height: '100px', overflow:'scroll'}}>
+                    
+                        { renderPokeMoves() }
+
+                    </Container>
 
                     <br/>
                 </Grid>
