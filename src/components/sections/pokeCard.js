@@ -1,3 +1,4 @@
+import react, {useState} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -113,24 +114,13 @@ const PokeCard =(props)=> {
         }
     }
 
-    const renderPokeMoves = () => {
-        if (pokeProps.moves) {
-            return (
-                pokeProps.moves.map((atk, index)=>{
-                    return <Typography key={index}>{atk}</Typography>
-                })
-            )
-        } 
-    }
-
     return (
         <Card
             elevation={getCardElevation()}
-            sx={{padding: 2, width: '500px' }}
+            sx={{padding: 2, width: '500px'}}
         >
             {/* <CardActionArea sx={{height: '100%'}}> */}
                 
-
                 <Grid
                     container
                     direction="column"
@@ -159,11 +149,6 @@ const PokeCard =(props)=> {
                     >
                             {renderPokemonType()}
                     </Grid>
-                    <Container sx={{height: '100px', overflow:'scroll'}}>
-                    
-                        { renderPokeMoves() }
-
-                    </Container>
 
                     <br/>
                 </Grid>
