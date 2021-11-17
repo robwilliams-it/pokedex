@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import Container from '@mui/material/Container';
 import { CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -56,13 +56,14 @@ const Pokemon = () => {
     }
 
     const renderPokeData = () => {
-        if (pokemon.sprites) {
+        if (pokemon.stats) {
 
             const pokeMetaObj = {
                 height: pokemon.height,
                 weight: pokemon.weight,
                 moves: [],
                 abilities: [],
+                stats:[],
             }
 
             pokemon.moves.map((atk)=>{
@@ -77,7 +78,13 @@ const Pokemon = () => {
                 pokeMetaObj.abilities.push(abilityName);
             })
 
-            return <PokeData pokeMetaData={pokeMetaObj}/>
+            pokemon.stats.map((stat)=>{
+                let statName =  stat.stat.name;
+                statName = statName[0].toUpperCase() + statName.slice(1);
+                pokeMetaObj.stats.push({statName: stat.base_stat})
+            })
+
+            return (<PokeData pokeMetaData={pokeMetaObj}/>) 
 
         }  else {
             return (

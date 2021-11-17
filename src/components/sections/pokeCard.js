@@ -78,14 +78,14 @@ const PokeCard =(props)=> {
                 pokeProps.type[i] = type;
             }
             return (
-                pokeProps.type.map((type)=>(
-                <Card sx={{backgroundColor: `${typeColors[type]}` }}>
-                    <Container>
-                        <Typography gutterBottom variant="h5" component="div" sx={{color:'white'}}>
-                            { type }
-                        </Typography>
-                    </Container>
-                </Card>
+                pokeProps.type.map((type, index)=>(
+                    <Card key={index} sx={{backgroundColor: `${typeColors[type]}` }}>
+                        <Container>
+                            <Typography gutterBottom variant="h5" component="div" sx={{color:'white'}}>
+                                { type }
+                            </Typography>
+                        </Container>
+                    </Card>
                 ))
             )
         }
