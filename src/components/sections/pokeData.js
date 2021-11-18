@@ -2,7 +2,7 @@
 import react, { createContext } from 'react';
 import { Container, Typography, Grid, Box } from "@mui/material";
 import { typography } from "@mui/system";
-import BaseStats from './baseState.js';
+import BaseStats from './baseStat.js';
 
 const PokeData = (props) => {
     const pokeMetaData = props.pokeMetaData || {};
@@ -14,7 +14,7 @@ const PokeData = (props) => {
                 <Box sx={{height: '100%', overflow: 'scroll'}}>
                     {pokeMetaData.moves.map((atk, index)=>{
                         return <Typography key={index}>{atk}</Typography>
-                    })}
+                    })} 
                 </Box>
             )
         } else {
@@ -82,7 +82,7 @@ const PokeData = (props) => {
                     sx={{width:'100%', height: '50%'}}
                 >
                     <Container id='title' sx={{padding:1}}>
-                        <BaseStats/>
+                        <BaseStats stats={pokeMetaData.stats}/>
                     </Container>
                 </Grid>
 

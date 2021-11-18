@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import { CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -81,7 +81,7 @@ const Pokemon = () => {
             pokemon.stats.map((stat)=>{
                 let statName =  stat.stat.name;
                 statName = statName[0].toUpperCase() + statName.slice(1);
-                pokeMetaObj.stats.push({statName: stat.base_stat})
+                pokeMetaObj.stats.push({name:[statName], number: stat.base_stat})
             })
 
             return (<PokeData pokeMetaData={pokeMetaObj}/>) 
