@@ -51,7 +51,7 @@ const PokeData = (props) => {
                         sx={{width:'50%', height: '100%'}}
                     >
                         <Box id='title' sx={{padding:1}}>
-                            <Typography>Moves</Typography>
+                            <Typography variant="h4">Moves</Typography>
                         </Box>
                         <Container 
                             id='list'
@@ -67,7 +67,7 @@ const PokeData = (props) => {
                         sx={{width:'50%', height: '100%'}}
                     >  
                         <Box id='title' sx={{padding:1}}>
-                            <Typography>Abilities</Typography>
+                            <Typography variant="h4">Abilities</Typography>
                         </Box>
                         <Container sx={{height: '90%'}}>
                             { renderPokeAbilities() }
