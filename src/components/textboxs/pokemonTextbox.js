@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 const PokemonTextBox = () => (
-    <Paper elevation={0}  sx={{ flexShrink: 0}} >
+    <Paper elevation={0}  s={12} >
         <Grid
             container
             direction="column"

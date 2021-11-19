@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import Container from '@mui/material/Container';
 import { CardMedia } from '@mui/material';
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grow from '@mui/material/Grow';
 import PokemonTextBox from '../textboxs/pokemonTextbox.js';
-import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import PokeCard from './pokeCard.js';
 import PokeData from './pokeData.js';
+import BaseStats from './baseStat.js';
+import { Container, Typography, Grid, Box, List } from "@mui/material";
 
 // const textBoxSize = window.screen.width > 1000 ? '50%' : '100%';
 const pokemonCount = 898;
@@ -55,36 +54,17 @@ const Pokemon = () => {
         return <PokeCard handleClick={handleClick}/>
     }
 
-    const renderPokeData = () => {
-        if (pokemon.stats) {
-
-            const pokeMetaObj = {
-                height: pokemon.height,
-                weight: pokemon.weight,
-                moves: [],
-                abilities: [],
-                stats:[],
-            }
+    const renderPokeMoves= () => {
+        if (pokemon.moves) {
+            const moves=[];
 
             pokemon.moves.map((atk)=>{
                 let atkName = atk.move.name;
                 atkName = atkName[0].toUpperCase() + atkName.slice(1);
-                pokeMetaObj.moves.push(atkName);
+                moves.push(atkName);
             })
 
-            pokemon.abilities.map((ability)=>{
-                let abilityName = ability.ability.name;
-                abilityName = abilityName[0].toUpperCase() + abilityName.slice(1);
-                pokeMetaObj.abilities.push(abilityName);
-            })
-
-            pokemon.stats.map((stat)=>{
-                let statName =  stat.stat.name;
-                statName = statName[0].toUpperCase() + statName.slice(1);
-                pokeMetaObj.stats.push({name:[statName], number: stat.base_stat})
-            })
-
-            return (<PokeData pokeMetaData={pokeMetaObj}/>) 
+            return (<PokeData pokeMetaData={moves}/>) 
 
         }  else {
             return (
@@ -93,7 +73,6 @@ const Pokemon = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    sx={{height: '100%'}}
                 >
                     <Grid item>
                         <PokemonTextBox />
@@ -103,15 +82,51 @@ const Pokemon = () => {
         }
     }
 
+
+    const renderPokeAbilities = () => {
+        if (pokemon.abilities) {
+
+            return (
+                <Container>
+                    <Box id='title' sx={{padding:1}}>
+                        <Typography variant="h4">Abilities</Typography>
+                    </Box>
+                    {pokemon.abilities.map((ability, index)=>{
+                        let name = ability.ability.name;
+                        name = name[0].toUpperCase() + name.slice(1);
+                        return <Typography key={index}> {name} </Typography>
+                    })}
+                </Container>
+            )
+        } 
+    }
+
+    const renderBaseStats = () => {
+        if (pokemon.stats) {
+
+            const pokeStats = [];
+            pokemon.stats.map((stat)=>{
+                let statName =  stat.stat.name;
+                statName = statName[0].toUpperCase() + statName.slice(1);
+                pokeStats.push({name:[statName], number: stat.base_stat})
+            })
+
+            return <BaseStats  stats={ pokeStats }/>
+
+        } else {
+            return <div />
+        }
+    }
+
     return(
-        <Container 
+        <div 
         id='pokemon'
         maxWidth="100%" 
         style={{
             padding:'0px', 
             top: '10vh',
             position: 'relative',
-            height: '100vh',
+            height: '100vh'
         }}
         >
             <Grid
@@ -119,34 +134,37 @@ const Pokemon = () => {
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                sx={{
-                    height: '100%',
-                    width: '100%'
-                }}
+                spacing={2}
+                sx={{ height: '100%', padding: 0}}
             >
                 <Grid 
-                    container
-                    sx={{width: '50%', height: '100%'}} 
-                > 
-                    <Grid item
-                        sx={{width:'100%', height:'100%'}}
+                    item 
+                    m={3}
+                    sx={{padding:0, margin:0}}
+                >
+                    <Card
+                        sx={{height:'3em'}}
                     >
-                        {renderPokeData()}
-                    </Grid>
+                        Search Bar
+                    </Card>
+                    <br/>
+                    { renderBaseStats() }
+                    <br/>
+                    { renderPokeAbilities() }
+
                 </Grid>
 
-                <Grid 
-                    id='pokemonCard'
-                    container
-                    direction='row'
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{width: '50%', height: '100%'}} 
-                > 
+                <Grid item m={4}>
                     {renderPokemon()}
                 </Grid>
+                <Grid item sx={{height: '100%'}} m={5} s={12} xs={12}>
+                    {renderPokeMoves()}
+                </Grid>
             </Grid>
-        </Container>
+
+
+
+        </div>
     )
 }
 

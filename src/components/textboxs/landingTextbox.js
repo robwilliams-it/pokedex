@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 const LandingTextBox = () => (
-    <Paper elevation={3}  sx={{ flexShrink: 0 }} >
+    <Paper elevation={3} s={12} m={8}>
         <Grid
             container
             direction="column"
@@ -19,8 +19,8 @@ const LandingTextBox = () => (
             <Container 
                 maxWidth="100%" 
             >
-            <Typography variant="subtitle" gutterBottom component="div">
-                So initially I started with an image of the NY skyline but I figured this image would be more appropriate since I decided to use to create this project using the pokeAPI
+            <Typography variant="h4" gutterBottom component="div">
+                Haven't looked at pokemon in a while. Well here are all 898 that you can view randomly!
             </Typography>
             <br/>
             </Container>

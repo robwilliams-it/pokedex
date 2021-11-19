@@ -17,7 +17,7 @@ const BaseStats = (props) => {
             >
                 {stats.map((stat)=>{
                     const getValue = () => {
-                        return (stat.number / 17);
+                        return (stat.number / 51);
                     }
                     return (
                         <Grid item sx={{width: '100%'}}>
@@ -36,18 +36,25 @@ const BaseStats = (props) => {
                                 <Rating 
                                     sx={{width: '60%'}}
                                     name={stat.name} 
-                                    value={getValue()} max={15} readOnly 
+                                    value={getValue()} max={5} readOnly 
                                     precision={0.25}
                                     sx={{color: '#ff6d75'}}
                                     icon={<CatchingPokemonIcon color={'red'}/>}
                                     emptyIcon={<CatchingPokemonIcon />}
                                     
                                 />
-                                <Box
-                                    sx={{width: '5%'}}
+                                <Grid
+                                    id="NUMBER"
+                                    container
+                                    direction="column"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    sx={{width: '10%'}}
                                 > 
-                                    <Typography>{stat.number}</Typography>
-                                </Box>
+                                    <Grid item>
+                                        <Typography>{stat.number}</Typography>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     )
@@ -58,16 +65,21 @@ const BaseStats = (props) => {
 
     return (
         <Grid 
-            id='out' 
-            sx={{
-                height: '100%', 
+            id='out'
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ 
                 width: '100%', 
                 }}
         >
-            <Container>
+            <Grid item>
                 <Typography variant="h4"> Base Stat From 0 to 255 </Typography>
-            </Container>
+            </Grid>
+
+            <Grid item >
             {renderStats()}
+            </Grid>
         </Grid>
     )
 }
