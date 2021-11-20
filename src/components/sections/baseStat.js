@@ -24,14 +24,14 @@ const BaseStats = (props) => {
                             <Grid
                                 container
                                 direction="row"
-                                justifyContent="flex-start"
+                                justifyContent="strech"
                                 alignItems="center"
                                 sx={{width: '100%'}}
                             >
                                 <Box
-                                    sx={{width: '25%'}}
+                                    sx={{width: '125px'}}
                                 > 
-                                    <Typography component="legend" style={{float:'left'}}>{stat.name}</Typography>
+                                    <Typography component="legend" >{stat.name}</Typography>
                                 </Box>
                                 <Rating 
                                     sx={{width: '60%'}}
@@ -74,11 +74,13 @@ const BaseStats = (props) => {
                 }}
         >
             <Grid item>
-                <Typography variant="h4"> Base Stat From 0 to 255 </Typography>
+                <Typography variant="h4"> Base Stat: 0 to 255 </Typography>
             </Grid>
 
             <Grid item >
-            {renderStats()}
+                <Container sx={{backgroundColor:'ghostwhite'}}>
+                    {renderStats()}
+                </Container>
             </Grid>
         </Grid>
     )

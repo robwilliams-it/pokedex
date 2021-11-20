@@ -117,7 +117,7 @@ const PokeCard =(props)=> {
     return (
         <Card
             elevation={getCardElevation()}
-            sx={{width: '100%'}}
+            sx={{width: '475px'}}
         >
             {/* <CardActionArea sx={{height: '100%'}}> */}
                 

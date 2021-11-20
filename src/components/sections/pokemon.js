@@ -6,7 +6,7 @@ import PokemonTextBox from '../textboxs/pokemonTextbox.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import PokeCard from './pokeCard.js';
-import PokeData from './pokeData.js';
+import PokeMoves from './pokeMoves.js';
 import BaseStats from './baseStat.js';
 import { Container, Typography, Grid, Box, List } from "@mui/material";
 
@@ -56,15 +56,20 @@ const Pokemon = () => {
 
     const renderPokeMoves= () => {
         if (pokemon.moves) {
-            const moves=[];
+            const movesObj={moves:[]};
 
             pokemon.moves.map((atk)=>{
                 let atkName = atk.move.name;
                 atkName = atkName[0].toUpperCase() + atkName.slice(1);
-                moves.push(atkName);
+                movesObj.moves.push(atkName);
             })
 
-            return (<PokeData pokeMetaData={moves}/>) 
+            return (
+                <Box sx={{height:'200px'}}>
+                    <Typography variant="h4">Moves</Typography>
+                    <PokeMoves pokeMoves={movesObj}/>
+                </Box>
+            ) 
 
         }  else {
             return (
@@ -87,16 +92,18 @@ const Pokemon = () => {
         if (pokemon.abilities) {
 
             return (
-                <Container>
-                    <Box id='title' sx={{padding:1}}>
+                <Box>
+                    <Box id='title'>
                         <Typography variant="h4">Abilities</Typography>
                     </Box>
-                    {pokemon.abilities.map((ability, index)=>{
-                        let name = ability.ability.name;
-                        name = name[0].toUpperCase() + name.slice(1);
-                        return <Typography key={index}> {name} </Typography>
-                    })}
-                </Container>
+                    <Container sx={{backgroundColor:'ghostwhite'}}>
+                        {pokemon.abilities.map((ability, index)=>{
+                            let name = ability.ability.name;
+                            name = name[0].toUpperCase() + name.slice(1);
+                            return <Typography key={index}> {name} </Typography>
+                        })}
+                    </Container>
+                </Box>
             )
         } 
     }
@@ -120,46 +127,66 @@ const Pokemon = () => {
 
     return(
         <div 
-        id='pokemon'
-        maxWidth="100%" 
-        style={{
-            padding:'0px', 
-            top: '10vh',
-            position: 'relative',
-            height: '100vh'
-        }}
+            id='pokemon'
+            maxWidth="100%" 
+            style={{
+                padding:'0px', 
+                top: '10vh',
+                position: 'relative',
+                height: '100vh'
+            }}
         >
             <Grid
                 container
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                spacing={2}
-                sx={{ height: '100%', padding: 0}}
+                sx={{ 
+                    height: '100%', padding: 0}
+                }
             >
                 <Grid 
                     item 
-                    m={3}
-                    sx={{padding:0, margin:0}}
+                    m={4}
+                    sx={{padding:0, margin:0, width: '40%',maxWidth: '475px', maxHeight: '50%'}}
                 >
-                    <Card
-                        sx={{height:'3em'}}
+                    <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="stretch"
+                        
+                        sx={{ height: '100%', padding: 0}}
                     >
-                        Search Bar
-                    </Card>
-                    <br/>
-                    { renderBaseStats() }
-                    <br/>
-                    { renderPokeAbilities() }
-
+                        <Card
+                            sx={{height:'3em'}}
+                        >
+                            Search Bar
+                        </Card>
+                        
+                        { renderBaseStats() }
+                        { renderPokeAbilities() }
+                        { renderPokeMoves() }
+                    </Grid>
                 </Grid>
 
-                <Grid item m={4}>
-                    {renderPokemon()}
+                <Grid 
+                    item 
+                    m={4}
+                    sx={{maxWidth: '50%', maxHeight: '100%'}}
+                >
+                    <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="stretch"
+                        
+                        sx={{ height: '75%', padding: 0}}
+                    >
+                        {renderPokemon()}
+                    </Grid>
                 </Grid>
-                <Grid item sx={{height: '100%'}} m={5} s={12} xs={12}>
-                    {renderPokeMoves()}
-                </Grid>
+                
             </Grid>
 
 
