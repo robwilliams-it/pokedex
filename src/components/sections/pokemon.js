@@ -7,6 +7,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import PokeCard from './pokeCard.js';
 import PokeMoves from './pokeMoves.js';
+import PokeSearch from './pokeSearch.js';
 import BaseStats from './baseStat.js';
 import { Container, Typography, Grid, Box, List } from "@mui/material";
 
@@ -24,6 +25,10 @@ const Pokemon = () => {
 
     const updatePrompt = () => {
         setPromptClick(!promptClick); 
+    }
+
+    const handleSearchSubmit = (int) => {
+        getPokemon(int);
     }
 
     const getPokemon = (pokeIndex) => {
@@ -155,14 +160,9 @@ const Pokemon = () => {
                         direction="column"
                         justifyContent="center"
                         alignItems="stretch"
-                        
                         sx={{ height: '100%', padding: 0}}
                     >
-                        <Card
-                            sx={{height:'3em'}}
-                        >
-                            Search Bar
-                        </Card>
+                        <PokeSearch handleSubmit={handleSearchSubmit}/>
                         
                         { renderBaseStats() }
                         { renderPokeAbilities() }
