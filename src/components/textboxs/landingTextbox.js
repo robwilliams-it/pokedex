@@ -20,7 +20,7 @@ const LandingTextBox = () => (
                 maxWidth="100%" 
             >
             <Typography variant="h4" gutterBottom component="div">
-                Haven't looked at pokemon in a while. Well here are all 898 that you can view randomly!
+                I hope you enjoy my humble little PokeDex lite.
             </Typography>
             <br/>
             </Container>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import PokemonList from '../../pokemonMasterList.js';
@@ -10,6 +10,10 @@ const Search = (props) => {
     const [value, setValue] = React.useState("");
     const [inputValue, setInputValue] = React.useState('');
 
+    useEffect(()=>{
+        setValue("");
+    },[props])
+
     const handleChange =(event, newValue) =>{
         setValue(newValue);
         if (newValue !== "") {
@@ -20,6 +24,10 @@ const Search = (props) => {
 
     const handleInputChange = (event, newInputValue) => {
         setInputValue(newInputValue);
+    }
+
+    const clearSearch = () => {
+        setValue("");
     }
 
     return (

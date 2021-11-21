@@ -101,7 +101,7 @@ const Pokemon = () => {
                     <Box id='title'>
                         <Typography variant="h4">Abilities</Typography>
                     </Box>
-                    <Container sx={{backgroundColor:'ghostwhite', height: '72px'}}>
+                    <Container sx={{ height: '72px'}}>
                         {pokemon.abilities.map((ability, index)=>{
                             let name = ability.ability.name;
                             name = name[0].toUpperCase() + name.slice(1);
@@ -152,6 +152,22 @@ const Pokemon = () => {
                     height: '80%', padding: 0}
                 }
             >
+                {/* <Box 
+                    sx={{ 
+                        position: 'absolute',
+                        zIndex: '-1',
+                        top:'40%',
+                        width: '100%',
+                        height: '50vh', 
+                        opacity: 0.5}} 
+                > 
+                    <CardMedia
+                        component="img"
+                        height="100%"
+                        image="../../images/pokemon_background.jpeg"
+                    />
+                </Box> */}
+
                 <Grid 
                     item 
                     m={4}

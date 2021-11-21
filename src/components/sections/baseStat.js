@@ -78,7 +78,7 @@ const BaseStats = (props) => {
             </Grid>
 
             <Grid item >
-                <Container sx={{backgroundColor:'ghostwhite'}}>
+                <Container >
                     {renderStats()}
                 </Container>
             </Grid>
