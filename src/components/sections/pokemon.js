@@ -101,7 +101,7 @@ const Pokemon = () => {
                     <Box id='title'>
                         <Typography variant="h4">Abilities</Typography>
                     </Box>
-                    <Container sx={{backgroundColor:'ghostwhite'}}>
+                    <Container sx={{backgroundColor:'ghostwhite', height: '72px'}}>
                         {pokemon.abilities.map((ability, index)=>{
                             let name = ability.ability.name;
                             name = name[0].toUpperCase() + name.slice(1);
@@ -138,22 +138,49 @@ const Pokemon = () => {
                 padding:'0px', 
                 top: '10vh',
                 position: 'relative',
-                height: '100vh'
+                height: '100vh',
+                overflow: 'scroll'
+
             }}
         >
             <Grid
                 container
-                direction="row"
+                direction="row-reverse"
                 justifyContent="center"
                 alignItems="center"
                 sx={{ 
-                    height: '100%', padding: 0}
+                    height: '80%', padding: 0}
                 }
             >
                 <Grid 
                     item 
                     m={4}
-                    sx={{padding:0, margin:0, width: '40%',maxWidth: '475px', maxHeight: '50%'}}
+                    s={2}
+                    xs={12}
+                    sx={{maxWidth: '50%', maxHeight: '100%'}}
+                >
+                    <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        
+                        sx={{ height: '75%'}}
+                    >
+                        {renderPokemon()}
+                    </Grid>
+                </Grid>
+
+                <Grid 
+                    item
+                    m={4}
+                    s={2}
+                    xs={12}
+                    sx={{width: '40%',maxWidth: '475px', maxHeight: '100%'}}
+                >
+                <Card 
+                    elevation={3}
+                    sx={{padding: 8}}
                 >
                     <Grid
                         container
@@ -162,30 +189,16 @@ const Pokemon = () => {
                         alignItems="stretch"
                         sx={{ height: '100%', padding: 0}}
                     >
-                        <PokeSearch handleSubmit={handleSearchSubmit}/>
-                        
-                        { renderBaseStats() }
-                        { renderPokeAbilities() }
-                        { renderPokeMoves() }
+                            <PokeSearch handleSubmit={handleSearchSubmit}/>
+                            
+                            { renderBaseStats() }
+                            { renderPokeAbilities() }
+                            { renderPokeMoves() }
                     </Grid>
+                        </Card>
                 </Grid>
 
-                <Grid 
-                    item 
-                    m={4}
-                    sx={{maxWidth: '50%', maxHeight: '100%'}}
-                >
-                    <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="stretch"
-                        
-                        sx={{ height: '75%', padding: 0}}
-                    >
-                        {renderPokemon()}
-                    </Grid>
-                </Grid>
+                
                 
             </Grid>
 

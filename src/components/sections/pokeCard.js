@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import { Box, keyframes } from '@mui/system';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 const typeColors = {
     'Bug' : '#A6B91A',
@@ -48,7 +49,6 @@ const spin = keyframes`
 const PokeCard =(props)=> {
     const pokeProps = props.pokeData || {};
     const handleClick = props.handleClick;
-    const prompt = props.prompt;
 
     const renderPokemonName = () => {
         let pokeName = pokeProps.name;
@@ -97,7 +97,6 @@ const PokeCard =(props)=> {
             <CardMedia
                 component="img"
                 image= {pokeProps.image}
-                onClick = {handleClick}
             />
             )
         } else {
@@ -114,6 +113,29 @@ const PokeCard =(props)=> {
         }
     }
 
+    const renderPokeID = () => {
+        if (pokeProps.id) {
+            return <Typography variant="h5" sx={{px: 1}}>#<b>{pokeProps.id}</b></Typography>
+        } else {
+            return <div></div>
+        }
+    }
+
+    const renderBackupBall =() => {
+        if (pokeProps.image) {
+            return (
+                <CardMedia
+                    component="img"
+                    image= '../images/pokeball2.png' 
+                    onClick = {handleClick} 
+                    sx={{height: '4m', width: '4em', padding: 1}}
+                />
+            )
+        } else {
+            return <div></div>
+        }
+    }
+
     return (
         <Card
             elevation={getCardElevation()}
@@ -127,6 +149,17 @@ const PokeCard =(props)=> {
                     justifyContent="space-around"
                     alignItems="center"
                 >
+
+                    <Grid
+                        id='pokemonName'
+                        container
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        {renderPokeID()}
+                        {renderBackupBall()}
+                    </Grid>
 
                     <Grid
                         id='pokemonName'

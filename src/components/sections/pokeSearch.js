@@ -12,8 +12,10 @@ const Search = (props) => {
 
     const handleChange =(event, newValue) =>{
         setValue(newValue);
-        const pokeIndex = PokemonList.indexOf(newValue) + 1;
-        handleSubmit(pokeIndex);
+        if (newValue !== "") {
+            const pokeIndex = PokemonList.indexOf(newValue) + 1;
+            handleSubmit(pokeIndex);
+        }
     }
 
     const handleInputChange = (event, newInputValue) => {
