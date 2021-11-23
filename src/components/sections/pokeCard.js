@@ -1,14 +1,15 @@
-import react, {useState} from 'react'
+import react, {useState, useEffect} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import { Box, keyframes } from '@mui/system';
 import { renderIntoDocument } from 'react-dom/test-utils';
+import PreviousPokemon from '../../previousPokemon.js';
 
 const typeColors = {
     'Bug' : '#A6B91A',
@@ -49,6 +50,16 @@ const spin = keyframes`
 const PokeCard =(props)=> {
     const pokeProps = props.pokeData || {};
     const handleClick = props.handleClick;
+    const [canGetNew, setCanGetNew] = useState(true);
+
+    const getNewPokemon = (event) => {
+        setCanGetNew(false);
+        handleClick(event.target.id);
+    }
+
+    useEffect(()=> {
+        setCanGetNew(true);
+    },[props]);
 
     const renderPokemonName = () => {
         let pokeName = pokeProps.name;
@@ -101,15 +112,33 @@ const PokeCard =(props)=> {
             )
         } else {
             return (
-                <CardMedia
-                    component="img"
-                    image= '../images/pokeball2.png' 
-                    onClick = {handleClick} 
-                    sx={{
-                        animation: `${spin} 1s infinite ease`
-                    }}
-                />
+                <Button onClick = {getNewPokemon}>
+                    <CardMedia
+                        component="img"
+                        image= '../images/pokeball2.png' 
+                         
+                        sx={{
+                            animation: `${spin} 1s infinite ease`
+                        }}
+                    />
+                </Button>
             )
+        }
+    }
+
+    const getBorderRadius = () => {
+        if (pokeProps.image) {
+            return '5px';
+        } else {
+            return '100%';
+        }
+    }
+
+    const getExtraPadding = () => {
+        if (pokeProps.image) {
+            return '20px';
+        } else {
+            return '0px';
         }
     }
 
@@ -124,30 +153,67 @@ const PokeCard =(props)=> {
     const renderBackupBall =() => {
         if (pokeProps.image) {
             return (
-                <CardMedia
-                    component="img"
-                    image= '../images/pokeball2.png' 
-                    onClick = {handleClick} 
-                    sx={{height: '4m', width: '4em', padding: 1}}
-                />
+                <Button 
+                    onClick = {getNewPokemon} 
+                    disabled={!canGetNew}
+                    sx={{opacity: ()=>{
+                        return canGetNew ? 1 : .5;
+                    }}}
+                >
+                    <CardMedia
+                        component="img"
+                        image= '../images/pokeball2.png'
+                        sx={{height: '4m', width: '4em', padding: 1}}
+                    />
+                </Button>
             )
         } else {
             return <div></div>
         }
     }
 
+    const renderBackButton =() => {
+        // console.log(PreviousPokemon.collection.length);
+        if (PreviousPokemon.hasPreviousPokemon()) {
+            return (
+                <Button 
+                    disabled={!canGetNew}
+                    onClick = {getNewPokemon}
+                >
+                    <Typography id="back">Back</Typography>
+                </Button>
+
+            )
+        }
+    }
+
+    const renderNextButton =() => {
+        if (PreviousPokemon.hasNextPokemon()) {
+            return (
+                <Button 
+                    disabled={!canGetNew}
+                    onClick = {getNewPokemon}
+                >
+                    <Typography id="next">Next</Typography>
+                </Button>
+            )
+        }
+    }
+
     return (
         <Card
             elevation={getCardElevation()}
-            sx={{width: '475px'}}
+            sx={{width: '475px', borderRadius: getBorderRadius()}}
         >
             {/* <CardActionArea sx={{height: '100%'}}> */}
-                
+            {/* <img id='test' src="../images/pokeball.gif" style={{width:'100px', height:'100px', backgroundColor: 'black'}}/> */}
+
                 <Grid
                     container
                     direction="column"
                     justifyContent="space-around"
                     alignItems="center"
+                    sx={{pb: getExtraPadding()}}
                 >
 
                     <Grid
@@ -158,6 +224,8 @@ const PokeCard =(props)=> {
                         alignItems="center"
                     >
                         {renderPokeID()}
+                        {renderBackButton()}
+                        {renderNextButton()}
                         {renderBackupBall()}
                     </Grid>
 
@@ -183,7 +251,6 @@ const PokeCard =(props)=> {
                             {renderPokemonType()}
                     </Grid>
 
-                    <br/>
                 </Grid>
             {/* </CardActionArea> */}
         </Card>

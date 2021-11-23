@@ -12,7 +12,7 @@ import Pokemon from '../sections/pokemon.js';
 
 const About = () => (
     <div>
-        <Landing />
+        {/* <Landing /> */}
         <Pokemon />
     </div>
 )

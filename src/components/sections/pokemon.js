@@ -9,6 +9,7 @@ import PokeCard from './pokeCard.js';
 import PokeMoves from './pokeMoves.js';
 import PokeSearch from './pokeSearch.js';
 import BaseStats from './baseStat.js';
+import PreviousPokemon from '../../previousPokemon.js';
 import { Container, Typography, Grid, Box, List } from "@mui/material";
 
 // const textBoxSize = window.screen.width > 1000 ? '50%' : '100%';
@@ -18,9 +19,22 @@ const Pokemon = () => {
     const [pokemon, setPokemon] = useState({});
     const [promptClick, setPromptClick] = useState(true);
 
-    const handleClick = (event) => {
-        const randomNum = Math.floor(Math.random()*pokemonCount);
-        getPokemon(randomNum);
+    const handleClick = (elementID) => {
+        // if invoked with a number then 
+        // run get pokemon with that number and true
+        // else run get pokemon with random number and false
+        let rememberPokemon = false;
+        let pokeNum = 0;
+        if (elementID === 'back') {
+            pokeNum = PreviousPokemon.getPrevious();
+        } else if (elementID === 'next') {
+            pokeNum = PreviousPokemon.getNext();
+        } else {
+            pokeNum = Math.floor(Math.random()*pokemonCount);
+            rememberPokemon = true;
+        }
+
+        getPokemon(pokeNum, rememberPokemon);
     }
 
     const updatePrompt = () => {
@@ -28,16 +42,20 @@ const Pokemon = () => {
     }
 
     const handleSearchSubmit = (int) => {
-        getPokemon(int);
+        getPokemon(int, false);
     }
 
-    const getPokemon = (pokeIndex) => {
+    const getPokemon = (pokeIndex, recordPokemon = false) => {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeIndex}`)
             .then((pokedata)=> {
+                // console.log('recordPokemon: ',recordPokemon);
+                if (recordPokemon) {
+                    PreviousPokemon.addToPrevious(pokedata.data.id);
+                    // console.log(`${pokedata.data.id} added to previous`)
+                }
                 setPokemon(pokedata.data);
             })
             .catch((error)=> {
-                console.log(pokeIndex);
                 console.log(error);
             });
     }
@@ -140,7 +158,6 @@ const Pokemon = () => {
                 position: 'relative',
                 height: '100vh',
                 overflow: 'scroll'
-
             }}
         >
             <Grid
@@ -170,9 +187,8 @@ const Pokemon = () => {
 
                 <Grid 
                     item 
+                    // xs={12}
                     m={4}
-                    s={2}
-                    xs={12}
                     sx={{maxWidth: '50%', maxHeight: '100%'}}
                 >
                     <Grid
@@ -189,14 +205,13 @@ const Pokemon = () => {
 
                 <Grid 
                     item
+                    // xs={12}
                     m={4}
-                    s={2}
-                    xs={12}
                     sx={{width: '40%',maxWidth: '475px', maxHeight: '100%'}}
                 >
                 <Card 
                     elevation={3}
-                    sx={{padding: 8}}
+                    sx={{px: 4, py: 8}}
                 >
                     <Grid
                         container

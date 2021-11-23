@@ -24,9 +24,9 @@ const PokeMoves = (props) => {
                 >
                     {pokeMoves.moves.map((atk, index)=>{
                         return (
-                            <Grid item> 
+                            <Grid item key={index}> 
                                 <Card> 
-                                    <Typography key={index} sx={{px:1}}>{atk}</Typography> 
+                                    <Typography sx={{px:1}}>{atk}</Typography> 
                                 </Card> 
                             </Grid>
                         )
