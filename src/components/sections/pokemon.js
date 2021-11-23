@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { CardMedia } from '@mui/material';
 import Card from '@mui/material/Card';
-import Grow from '@mui/material/Grow';
 import PokemonTextBox from '../textboxs/pokemonTextbox.js';
 import axios from 'axios';
-import Button from '@mui/material/Button';
 import PokeCard from './pokeCard.js';
 import PokeMoves from './pokeMoves.js';
 import PokeSearch from './pokeSearch.js';
 import BaseStats from './baseStat.js';
 import PreviousPokemon from '../../previousPokemon.js';
-import { Container, Typography, Grid, Box, List } from "@mui/material";
+import { Container, Typography, Grid, Box } from "@mui/material";
 
 // const textBoxSize = window.screen.width > 1000 ? '50%' : '100%';
 const pokemonCount = 898;
@@ -37,9 +34,9 @@ const Pokemon = () => {
         getPokemon(pokeNum, rememberPokemon);
     }
 
-    const updatePrompt = () => {
-        setPromptClick(!promptClick); 
-    }
+    // const updatePrompt = () => {
+    //     setPromptClick(!promptClick); 
+    // }
 
     const handleSearchSubmit = (int) => {
         getPokemon(int, false);
@@ -151,7 +148,6 @@ const Pokemon = () => {
     return(
         <div 
             id='pokemon'
-            maxWidth="100%" 
             style={{
                 padding:'0px', 
                 top: '10vh',

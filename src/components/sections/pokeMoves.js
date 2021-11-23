@@ -1,10 +1,5 @@
 
-import react, { createContext } from 'react';
-import { Container, Typography, Grid, Box, List, Card } from "@mui/material";
-import { typography } from "@mui/system";
-import BaseStats from './baseStat.js';
-import Divider from '@mui/material/Divider';
-import Pokemon from './pokemon.js';
+import { Container, Typography, Grid, Card } from "@mui/material";
 
 const PokeMoves = (props) => {
     const { pokeMoves } = props || {};

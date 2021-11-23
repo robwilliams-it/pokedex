@@ -1,5 +1,5 @@
-import react, { useState } from 'react';
-import { Grid, Card, Typography, Box, Container } from "@mui/material";
+
+import { Grid, Typography, Box, Container } from "@mui/material";
 import Rating from '@mui/material/Rating';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 

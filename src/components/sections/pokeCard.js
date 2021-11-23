@@ -1,14 +1,11 @@
-import react, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
-import { Box, keyframes } from '@mui/system';
-import { renderIntoDocument } from 'react-dom/test-utils';
+import { keyframes } from '@mui/system';
 import PreviousPokemon from '../../previousPokemon.js';
 
 const typeColors = {

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import PokemonList from '../../pokemonMasterList.js';
 
-const options = ['Option 1', 'Option 2'];
+// const options = ['Option 1', 'Option 2'];
 
 const Search = (props) => {
     const { handleSubmit } = props;
@@ -26,9 +26,9 @@ const Search = (props) => {
         setInputValue(newInputValue);
     }
 
-    const clearSearch = () => {
-        setValue("");
-    }
+    // const clearSearch = () => {
+    //     setValue("");
+    // }
 
     return (
         <div>
