@@ -27,4 +27,5 @@ const LandingTextBox = () => (
    </Paper>
 )
 
+
 export default LandingTextBox;
