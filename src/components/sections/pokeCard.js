@@ -133,9 +133,9 @@ const PokeCard =(props)=> {
 
     const getExtraPadding = () => {
         if (pokeProps.image) {
-            return '20px';
+            return 2;
         } else {
-            return '0px';
+            return 0;
         }
     }
 

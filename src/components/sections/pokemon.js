@@ -161,7 +161,10 @@ const Pokemon = () => {
                 justifyContent="center"
                 alignItems="center"
                 sx={{ 
-                    height: '100%', padding: 0}
+                        height: '100vh',
+                        padding: 0, 
+                        // overflow: 'scroll'
+                    }
                 }
             >
                 {/* <Box 
@@ -182,15 +185,15 @@ const Pokemon = () => {
 
                 <Grid 
                     item 
-                    // xs={12}
+                    s={12}
                     m={4}
-                    sx={{maxWidth: '50%', height: '100%'}}
+                    sx={{maxWidth: '50%', maxHeight: '800px'}}
                 >
                     <Grid
                         container
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ maxHeight: '600px', padding: 0}}
+                        sx={{ maxHeight: '800px', padding: 0}}
                     >
                         <Grid item>
                 
@@ -204,9 +207,9 @@ const Pokemon = () => {
 
                 <Grid 
                     item
-                    // xs={12}
+                    s={12}
                     m={4}
-                    sx={{width: '40%',maxWidth: '475px', maxHeight: '600px'}}
+                    sx={{width: '40%',maxWidth: '475px', maxHeight: '800px'}}
                 >
                     <Card 
                         elevation={3}
