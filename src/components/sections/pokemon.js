@@ -149,8 +149,7 @@ const Pokemon = () => {
         <div 
             id='pokemon'
             style={{
-                padding:'0px', 
-                top: '10vh',
+                padding:'0px',
                 position: 'relative',
                 height: '100vh',
                 overflow: 'scroll'
@@ -162,7 +161,7 @@ const Pokemon = () => {
                 justifyContent="center"
                 alignItems="center"
                 sx={{ 
-                    height: '80%', padding: 0}
+                    height: '100%', padding: 0}
                 }
             >
                 {/* <Box 
@@ -185,44 +184,48 @@ const Pokemon = () => {
                     item 
                     // xs={12}
                     m={4}
-                    sx={{maxWidth: '50%', maxHeight: '100%'}}
+                    sx={{maxWidth: '50%', height: '100%'}}
                 >
                     <Grid
                         container
-                        direction="column"
                         justifyContent="center"
                         alignItems="center"
-                        
-                        sx={{ height: '75%'}}
+                        sx={{ maxHeight: '600px', padding: 0}}
                     >
+                        <Grid item>
+                
                         {renderPokemon()}
+
+                        </Grid>
+
                     </Grid>
+
                 </Grid>
 
                 <Grid 
                     item
                     // xs={12}
                     m={4}
-                    sx={{width: '40%',maxWidth: '475px', maxHeight: '100%'}}
+                    sx={{width: '40%',maxWidth: '475px', maxHeight: '600px'}}
                 >
-                <Card 
-                    elevation={3}
-                    sx={{px: 4, py: 8}}
-                >
-                    <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="stretch"
-                        sx={{ height: '100%', padding: 0}}
+                    <Card 
+                        elevation={3}
+                        sx={{px: 4, py: 8}}
                     >
-                            <PokeSearch handleSubmit={handleSearchSubmit}/>
-                            
-                            { renderBaseStats() }
-                            { renderPokeAbilities() }
-                            { renderPokeMoves() }
-                    </Grid>
-                        </Card>
+                        <Grid
+                            container
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="stretch"
+                            sx={{ height: '100%', padding: 0}}
+                        >
+                                <PokeSearch handleSubmit={handleSearchSubmit}/>
+                                
+                                { renderBaseStats() }
+                                { renderPokeAbilities() }
+                                { renderPokeMoves() }
+                        </Grid>
+                    </Card>
                 </Grid>
 
                 
